@@ -77,18 +77,22 @@ pytest
 Python 3.8 или новее
 Для проверки кода: flake8, mypy, isort (можно установить через pip)
 
----
+6. Модуль `generators`
 
-## ✅ Что делать:
+Новый модуль для работы с большими объёмами транзакций с использованием генераторов. Позволяет эффективно фильтровать, извлекать описания и генерировать номера карт.
 
-1. Открой PyCharm.
-2. В корне проекта найди файл `README.md`.
-3. Если его нет — кликни правой кнопкой на папку проекта → **New** → **File** → введи имя: `README.md`.
-4. Скопируй **весь текст выше** и вставь его в этот файл.
-5. Сохрани файл (`Ctrl + S`).
-6. Закоммить изменения:
+7. Функции
 
-```bash
-git add README.md
-git commit -m "docs: add complete and correct README"
-git push
+#### `filter_by_currency(transactions, currency)`
+Возвращает итератор по транзакциям с указанной валютой.
+
+```python
+usd_transactions = filter_by_currency(transactions, "USD")
+print(next(usd_transactions))
+# {
+#   "id": 939719570,
+#   "state": "EXECUTED",
+#   ...
+#   "operationAmount": { "currency": { "code": "USD" } }
+# }
+
